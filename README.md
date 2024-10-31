@@ -5,6 +5,8 @@ macOS.
 
 The following sections show how to configure this action.
 
+This fork will remove the cache section that can fail in some outdated GHES without cache@v4
+
 ## Specifying Flutter version
 
 ### Use specific version and channel
