@@ -25,7 +25,8 @@ inputs:
   cache:
     description: Cache the Flutter SDK
     required: false
-    default: "false"
+    type: boolean
+    default: false
   cache-key:
     description: Identifier for the Flutter SDK cache
     required: false
@@ -92,8 +93,8 @@ runs:
           ${{ inputs.channel }}
 
     - name: Cache Flutter
-      uses: actions/cache@v4
-      if: ${{ inputs.cache == 'true' }}
+      uses: actions/cache@v3
+      if: ${{ inputs.cache }}
       with:
         path: ${{ steps.flutter-action.outputs.CACHE-PATH }}
         key: ${{ steps.flutter-action.outputs.CACHE-KEY }}
@@ -101,8 +102,8 @@ runs:
           ${{ steps.flutter-action.outputs.CACHE-KEY }}
 
     - name: Cache pub dependencies
-      uses: actions/cache@v4
-      if: ${{ inputs.cache == 'true' }}
+      uses: actions/cache@v3
+      if: ${{ inputs.cache }}
       with:
         path: ${{ steps.flutter-action.outputs.PUB-CACHE-PATH }}
         key: ${{ steps.flutter-action.outputs.PUB-CACHE-KEY }}-${{ hashFiles('**/pubspec.lock') }}
